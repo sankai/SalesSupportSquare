@@ -1,0 +1,29 @@
+<h1>Listing mailrecords</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shain</th>
+      <th>Mailsent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mailrecords.each do |mailrecord| %>
+      <tr>
+        <td><%= mailrecord.shain_id %></td>
+        <td><%= mailrecord.mailsent_id %></td>
+        <td><%= link_to 'Show', mailrecord %></td>
+        <td><%= link_to 'Edit', edit_mailrecord_path(mailrecord) %></td>
+        <td><%= link_to 'Destroy', mailrecord, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mailrecord', new_mailrecord_path %>

@@ -1,0 +1,2 @@
+module MailsentsHelper
+end

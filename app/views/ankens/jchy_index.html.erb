@@ -1,0 +1,192 @@
+<%= javascript_include_tag "clear_fields" %>
+<h1>案件一覧</h1>
+<h3><b>検索条件 </b>(全てAND条件)</h3>
+<%= form_tag ankens_jchy_index_path, :method => :get do %>
+<table id = "square">
+  <tr>
+    <td width="60">ステータス</td>
+    <td width="120"><%= collection_select(:search, :status, @statuses, :to_s, :to_s, :include_blank => true, :selected => @searched.fetch('status', ""))%></td>
+    <td width="1"  align="center">年</td>
+    <td width="1"><%= number_field :search, :year,  :value => @searched[:year], :size => 1 %></td>
+    <td width="1"  align="center">月</td>
+    <td width="1"><%= number_field :search, :month, :value => @searched[:month], :size => 1 %></td>
+  </tr>
+  <tr>
+    <td width="120" >営業部門</td>
+    <td width="120"><%= collection_select(:search, :e_bmn_id, @bmns, :id, :code_and_name, :include_blank => true, :selected => @searched.fetch('e_bmn_id', ""))%></td>
+    <td width="120" >営業担当</td>
+    <td width="120"><%= collection_select(:search, :e_shain_id, @shains, :id, :code_and_name, :include_blank => true, :selected => @searched.fetch('e_shain_id', ""))%></td>
+  </tr>
+  <tr>
+    <td width="60"><input type="button" name="clear" value="クリア" onclick="clearFormAll();" class="defaultbtn"/></td>
+    <td><%= submit_tag "検索" %></td>
+  </tr>
+</table>
+<% end %>
+<br />
+<hr>
+<table width="5000">
+  <thead>
+    <tr>
+      <th rowspan="2" >ｽﾃｰﾀｽ</th>
+      <th rowspan="2" >見積番号</th>
+      <th>顧客</th>
+      <th>主管部門</th>
+      <th>主管部門担当者</th>
+      <th>営業部門</th>
+      <th>営業担当者</th>
+      <th>見積件名</th>
+      <th>ﾌﾟﾛｼﾞｪｸﾄ</th>
+      <th>費用区分</th>
+      <th>売上分野名称</th>
+      <th>金額</th>
+      <th>受注予定年月</th>
+      <th>受注番号</th>
+      <th>先行作業承認日</th>
+      <th align="right" >売上予定</th>
+      <th></th>      
+      <th rowspan="2" align="right" > 4月</th>
+      <th rowspan="2" align="right" > 5月</th>
+      <th rowspan="2" align="right" > 6月</th>
+      <th rowspan="2" align="right" > 7月</th>
+      <th rowspan="2" align="right" > 8月</th>
+      <th rowspan="2" align="right" > 9月</th>
+      <th rowspan="2" align="right" >10月</th>
+      <th rowspan="2" align="right" >11月</th>
+      <th rowspan="2" align="right" >12月</th>
+      <th rowspan="2" align="right" > 1月</th>
+      <th rowspan="2" align="right" > 2月</th>
+      <th rowspan="2" align="right" > 3月</th>
+      <th rowspan="2" align="right" > 計</th>
+      <th rowspan="2" align="right" >次年度</th>
+      <th width="100" >最終売上予定</th>
+      <th>受注確度</th>
+      <th>見積日</th>
+      <th>出荷日</th>
+      <th>請求書</th>
+      <th>合算請求書</th>
+      <th>案件区分</th>
+      <th>請求ｽﾃｰﾀｽ</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+      <th>顧客名称</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>受注件名</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>受注日</th>
+      <th>先行作業ｻｲﾝ</th>
+      <th align="right" >売上実績</th>
+      <th align="right" >前年度</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>請求書日付</th>
+    <tr>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ankens.each do |anken| %>
+      <tr>
+        <td rowspan="2"><%= anken.status %></td>
+        <td rowspan="2"><%= anken.mitmr_no_all %></td>
+        <td><%= anken.kkk_code %></td>
+        <td><%= anken.sk_bmn_code %></td>
+        <td><!-- !% anken.sk_shain.code %--></td>
+        <td><%= anken.e_bmn_code %></td>
+        <td><%= anken.e_shain_code %></td>
+        
+        <td><%= anken.mitmr_name %></td>
+        <td><%= anken.prj_name_v %></td>
+        
+        <td><%= anken.hiyo_kbn %></td>
+        <td><%= anken.uribunya.name %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.kingaku) %></td>
+        <td><%= anken.jch_yotei_date %></td>
+        <td><%= anken.jch_no %></td>
+        <td><%= anken.snksgy_sn_date %></td>
+        <td></td>
+        <td></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 4)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 5)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 6)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 7)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 8)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 9)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount(10)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount(11)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount(12)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 1)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 2)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_amount( 3)) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.get_uriy_sum) %></td>
+        <td width="80" align="right" ><%= number_with_delimiter(anken.uri_y_jinen) %></td>
+        <td align="center" ><%= anken.uri_y_final %></td>
+        <td><%= anken.jch_kakudo %></td>
+        <td><%= anken.mtmr_date %></td>
+        <td><%= anken.anken_syukka_date %></td>
+        <td><%= anken.seikyusho %></td>
+        <td><%= anken.gassan_seikyu_date %></td>
+        <td><%= anken.anken_kbn %></td>
+        <td><%= anken.seikyu_status %></td>
+        <td><%= link_to 'Show', anken %></td>
+        <td><%= link_to 'Edit', edit_anken_path(anken) %></td>
+      </tr>
+      <tr>
+        <td><%= anken.kkk_name %></td>
+        <td><%= anken.sk_bmn_name %></td>
+        <td><!-- !% anken.sk_shain_name %--></td>
+        <td><%= anken.e_bmn_name %></td>
+        <td><%= anken.e_shain_name %></td>
+        <td><%= anken.jch_name_v %></td>
+        <td><%= anken.prj_code %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= anken.jch_date %></td>
+        <td><%= anken.snksgy_sign %></td>
+        <td></td>
+        <td align="right" ><%= number_with_delimiter(anken.uri_j_zennen) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 4)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 5)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 6)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 7)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 8)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 9)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount(10)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount(11)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount(12)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 1)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 2)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_amount( 3)) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.get_urij_sum) %></td>
+        <td align="right" ><%= number_with_delimiter(anken.uri_j_jinen) %></td>        
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= anken.seikyusho_date %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to 'Destroy', anken, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @ankens, :previous_label=>'≪前', :next_label=>'次≫' %>
+<br>
+</br>
+<%= link_to "メインメニュー", '/' %>
+

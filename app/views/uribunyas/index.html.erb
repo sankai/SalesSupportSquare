@@ -1,0 +1,29 @@
+<h1>Listing uribunyas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uribunyas.each do |uribunya| %>
+      <tr>
+        <td><%= uribunya.code %></td>
+        <td><%= uribunya.name %></td>
+        <td><%= link_to 'Show', uribunya %></td>
+        <td><%= link_to 'Edit', edit_uribunya_path(uribunya) %></td>
+        <td><%= link_to 'Destroy', uribunya, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Uribunya', new_uribunya_path %>

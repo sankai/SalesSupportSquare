@@ -1,0 +1,45 @@
+<%= javascript_include_tag "clear_fields" %>
+<h1>送信済一覧（社員）</h1>
+<table>
+  <thead>
+    <tr>
+      <th>送信済</th>
+      <th>社員コード</th>
+      <th>氏名</th>
+      <th>メール</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bmns_sent.each do |bmn| %>
+      <tr>
+        <td><%= bmn.code %></td>
+        <td><%= bmn.d_shian_name %></td>
+        <td><%= bmn.d_email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<h1>未送信一覧（社員）</h1>
+<table>
+  <thead>
+    <tr>
+      <th>送信済</th>
+      <th>社員コード</th>
+      <th>氏名</th>
+      <th>メール</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bmns_unsent.each do |bmn| %>
+      <tr>
+        <td><%= bmn.code %></td>
+        <td><%= bmn.name %></td>
+        <td><%= bmn.d_email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "メインメニュー", '/' %>

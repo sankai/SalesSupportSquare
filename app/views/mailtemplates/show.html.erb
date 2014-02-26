@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mailtemplate.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @mailtemplate.title %>
+</p>
+
+<p>
+  <strong>Banner:</strong>
+  <%= @mailtemplate.banner %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @mailtemplate.content %>
+</p>
+
+<p>
+  <strong>Trailer:</strong>
+  <%= @mailtemplate.trailer %>
+</p>
+
+<%= link_to 'Edit', edit_mailtemplate_path(@mailtemplate) %> |
+<%= link_to 'Back', mailtemplates_path %>

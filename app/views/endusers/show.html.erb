@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @enduser.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @enduser.name %>
+</p>
+
+<%= link_to 'Edit', edit_enduser_path(@enduser) %> |
+<%= link_to 'Back', endusers_path %>

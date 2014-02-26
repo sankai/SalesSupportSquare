@@ -1,0 +1,47 @@
+<%= javascript_include_tag "clear_fields" %>
+<h1>フォローメール対象一覧（社員）</h1>
+
+<%= form_tag '/uriys/send_to_bmns', :method => :put do %>
+  <div class="well">
+  <table>
+    <tr>
+      <td width="1"  align="center">月</td>
+      <td width="1"><%= number_field_tag :month, @month, :size => 1 %></td>
+      <td width="60"><input type="button" name="clear" value="クリア" onclick="clearFormAll();" class="defaultbtn"/></td>
+      <td><%= submit_tag "検索" %></td>
+    </tr>
+  </table>
+<% end %>
+<hr>
+<%= form_tag '/uriys/send_to_bmns', :method => :put do %>
+<table>
+  <thead>
+    <tr>
+      <th>送信指示</th>
+      <th>部門コード</th>
+      <th>部門名</th>
+      <th>代表者</th>
+      <th>代表メール</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bmns.each do |bmn| %>
+      <tr>
+        <td><%= check_box_tag 'tobe_sent[]', bmn.id, :checked => true %></td>
+        <td><%= bmn.code %></td>
+        <td><%= bmn.name %></td>
+        <td><%= bmn.d_shian_name %></td>
+        <td><%= bmn.d_email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+メールひな形
+<%= collection_select(:template, :id, @templates, :id, :name, :include_blank => false)%>
+<%= submit_tag "送信" %>
+<% end %>
+</br>
+<hr>
+<%= link_to "メインメニュー", '/' %>

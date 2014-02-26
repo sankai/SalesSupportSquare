@@ -1,0 +1,53 @@
+<%= javascript_include_tag "clear_fields" %>
+<h1>売上実績リスト</h1>
+
+<%= form_tag '/urijs', :method => :get do %>
+  <div class="well">
+  <table>
+      <td width="1"  align="center">月</td>
+      <td width="1"><%= number_field :search, :month, :value => @searched[:month], :size => 1 %></td>
+      <td width="120" align="right">営業部門</td>
+      <td width="120"><%= collection_select(:search, :e_bmn_id, @bmns, :id, :code_and_name, :include_blank => true, :selected => @searched.fetch(:e_bmn_id, ""))%></td>
+      <td width="120" align="right" >営業担当</td>
+      <td width="120"><%= collection_select(:search, :e_shain_id, @shains, :id, :code_and_name, :include_blank => true, :selected => @searched.fetch(:e_shain_id, ""))%></td>
+      <tr></tr>
+      <td width="60"><input type="button" name="clear" value="クリア" onclick="clearFormAll();" class="defaultbtn"/></td>
+      <td><%= submit_tag "検索" %></td>
+  </table>
+<% end %>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>担当営業</th>
+      <th>年度</th>
+      <th>月</th>
+      <th>プロジェクト件名</th>
+      <th>金額</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @urijs.each do |urij| %>
+      <tr>
+        <td><%= urij.anken.e_shain_name %></td>
+        <td><%= urij.year %></td>
+        <td align="right"><%= urij.month %></td>
+        <td><%= urij.anken.prj_name %></td>
+        <td align="right"><%= number_with_delimiter(urij.amount.to_i) %></td>
+        <td><%= %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @urijs, :previous_label=>'≪前', :next_label=>'次≫' %>
+<br>
+
+<!--%= link_to 'New Uriy', new_urij_path %-->
+</br>
+<hr>
+<%= link_to "メインメニュー", '/' %>
+
+
+
+

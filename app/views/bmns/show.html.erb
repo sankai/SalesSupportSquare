@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>部門コード:</strong>
+  <%= @bmn.code %>
+</p>
+
+<p>
+  <strong>部門名称:</strong>
+  <%= @bmn.name %>
+</p>
+
+<p>
+  <strong>代表者氏名:</strong>
+  <%= @bmn.d_shian_name %>
+</p>
+
+<p>
+  <strong>代表者メールアドレス:</strong>
+  <%= @bmn.d_email %>
+</p>
+
+<%= link_to 'Edit', edit_bmn_path(@bmn) %> |
+<%= link_to 'Back', bmns_path %>

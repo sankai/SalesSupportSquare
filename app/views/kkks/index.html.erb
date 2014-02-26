@@ -1,0 +1,33 @@
+<h1>Listing kkks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kkks.each do |kkk| %>
+      <tr>
+        <td><%= kkk.code %></td>
+        <td><%= kkk.name %></td>
+        <td><%= link_to 'Show', kkk %></td>
+        <td><%= link_to 'Edit', edit_kkk_path(kkk) %></td>
+        <td><%= link_to 'Destroy', kkk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Kkk', new_kkk_path %>
+</br>
+<hr>
+<%= link_to "メインメニュー", '/' %>
+

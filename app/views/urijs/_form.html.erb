@@ -1,0 +1,33 @@
+<%= form_for(@urij) do |f| %>
+  <% if @urij.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@urij.errors.count, "error") %> prohibited this urij from being saved:</h2>
+
+      <ul>
+      <% @urij.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :month %><br>
+    <%= f.number_field :month %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :anken_id %><br>
+    <%= f.number_field :anken_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

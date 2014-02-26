@@ -1,0 +1,2 @@
+module MailrecordsHelper
+end

@@ -1,0 +1,29 @@
+<h1>Listing mailsents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mailtemplate</th>
+      <th>Sent time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mailsents.each do |mailsent| %>
+      <tr>
+        <td><%= mailsent.mailtemplate_id %></td>
+        <td><%= mailsent.sent_time %></td>
+        <td><%= link_to 'Show', mailsent %></td>
+        <td><%= link_to 'Edit', edit_mailsent_path(mailsent) %></td>
+        <td><%= link_to 'Destroy', mailsent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mailsent', new_mailsent_path %>

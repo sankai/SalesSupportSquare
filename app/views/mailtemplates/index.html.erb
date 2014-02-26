@@ -1,0 +1,35 @@
+<h1>Listing mailtemplates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Banner</th>
+      <th>Content</th>
+      <th>Trailer</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mailtemplates.each do |mailtemplate| %>
+      <tr>
+        <td><%= mailtemplate.name %></td>
+        <td><%= mailtemplate.title %></td>
+        <td><%= mailtemplate.banner %></td>
+        <td><%= mailtemplate.content %></td>
+        <td><%= mailtemplate.trailer %></td>
+        <td><%= link_to 'Show', mailtemplate %></td>
+        <td><%= link_to 'Edit', edit_mailtemplate_path(mailtemplate) %></td>
+        <td><%= link_to 'Destroy', mailtemplate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mailtemplate', new_mailtemplate_path %>

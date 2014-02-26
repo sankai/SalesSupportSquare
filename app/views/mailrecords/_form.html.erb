@@ -1,0 +1,25 @@
+<%= form_for(@mailrecord) do |f| %>
+  <% if @mailrecord.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mailrecord.errors.count, "error") %> prohibited this mailrecord from being saved:</h2>
+
+      <ul>
+      <% @mailrecord.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :shain_id %><br>
+    <%= f.number_field :shain_id %>
+  </div>
+  <div class="field">
+    <%= f.label :mailsent_id %><br>
+    <%= f.number_field :mailsent_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

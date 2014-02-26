@@ -1,0 +1,29 @@
+<h1>Listing endusers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @endusers.each do |enduser| %>
+      <tr>
+        <td><%= enduser.code %></td>
+        <td><%= enduser.name %></td>
+        <td><%= link_to 'Show', enduser %></td>
+        <td><%= link_to 'Edit', edit_enduser_path(enduser) %></td>
+        <td><%= link_to 'Destroy', enduser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Enduser', new_enduser_path %>

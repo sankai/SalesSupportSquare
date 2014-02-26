@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shain:</strong>
+  <%= @mailrecord.shain_id %>
+</p>
+
+<p>
+  <strong>Mailsent:</strong>
+  <%= @mailrecord.mailsent_id %>
+</p>
+
+<%= link_to 'Edit', edit_mailrecord_path(@mailrecord) %> |
+<%= link_to 'Back', mailrecords_path %>

@@ -1,0 +1,74 @@
+<h1>社員一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>社員コード</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th colspan="4">売上予定</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="4">売上実績</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shains.each do |shain| %>
+      <tr>
+        <td><%= shain.code %></td>
+        <td><%= shain.name %></td>
+        <td><%= shain.email %></td>
+        <td><%= link_to '４', 'uriys/by_shain/4/' + shain.id.to_s %></td>        
+        <td><%= link_to '５', 'uriys/by_shain/5/' + shain.id.to_s %></td>        
+        <td><%= link_to '６', 'uriys/by_shain/6/' + shain.id.to_s %></td>        
+        <td><%= link_to '７', 'uriys/by_shain/7/' + shain.id.to_s %></td>        
+        <td><%= link_to '８', 'uriys/by_shain/8/' + shain.id.to_s %></td>        
+        <td><%= link_to '９', 'uriys/by_shain/9/' + shain.id.to_s %></td>        
+        <td><%= link_to '10', 'uriys/by_shain/10/' + shain.id.to_s %></td>        
+        <td><%= link_to '11', 'uriys/by_shain/11/' + shain.id.to_s %></td>        
+        <td><%= link_to '12', 'uriys/by_shain/12/' + shain.id.to_s %></td>        
+        <td><%= link_to '１', 'uriys/by_shain/1/' + shain.id.to_s %></td>        
+        <td><%= link_to '２', 'uriys/by_shain/2/' + shain.id.to_s %></td>        
+        <td><%= link_to '３', 'uriys/by_shain/3/' + shain.id.to_s %></td>        
+        <td><%= link_to '４', 'urijs/by_shain/4/' + shain.id.to_s %></td>        
+        <td><%= link_to '５', 'urijs/by_shain/5/' + shain.id.to_s %></td>        
+        <td><%= link_to '６', 'urijs/by_shain/6/' + shain.id.to_s %></td>        
+        <td><%= link_to '７', 'urijs/by_shain/7/' + shain.id.to_s %></td>        
+        <td><%= link_to '８', 'urijs/by_shain/8/' + shain.id.to_s %></td>        
+        <td><%= link_to '９', 'urijs/by_shain/9/' + shain.id.to_s %></td>        
+        <td><%= link_to '10', 'urijs/by_shain/10/' + shain.id.to_s %></td>        
+        <td><%= link_to '11', 'urijs/by_shain/11/' + shain.id.to_s %></td>        
+        <td><%= link_to '12', 'urijs/by_shain/12/' + shain.id.to_s %></td>        
+        <td><%= link_to '１', 'urijs/by_shain/1/' + shain.id.to_s %></td>        
+        <td><%= link_to '２', 'urijs/by_shain/2/' + shain.id.to_s %></td>        
+        <td><%= link_to '３', 'urijs/by_shain/3/' + shain.id.to_s %></td>        
+        <td><%= link_to '詳細', shain %></td>
+        <td><%= link_to '編集', edit_shain_path(shain) %></td>
+        <td><%= link_to '削除', shain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新規登録', new_shain_path %>
+</br>
+<hr>
+<%= link_to "メインメニュー", '/' %>
+

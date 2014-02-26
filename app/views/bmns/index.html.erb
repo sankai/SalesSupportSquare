@@ -1,0 +1,79 @@
+<h1>部門一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>部門コード</th>
+      <th>名称</th>
+      <th>代表者氏名</th>
+      <th>代表者メールアドレス</th>      
+      <th colspan="4">売上予定</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="4">売上実績</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bmns.each do |bmn| %>
+      <tr>
+        <td><%= bmn.code %></td>
+        <td><%= bmn.name %></td>
+        <td><%= bmn.d_shian_name %></td>
+        <td><%= bmn.d_email %></td>
+        <td><%= link_to '４', 'uriys/by_bmn/4/' + bmn.id.to_s %></td>        
+        <td><%= link_to '５', 'uriys/by_bmn/5/' + bmn.id.to_s %></td>        
+        <td><%= link_to '６', 'uriys/by_bmn/6/' + bmn.id.to_s %></td>        
+        <td><%= link_to '７', 'uriys/by_bmn/7/' + bmn.id.to_s %></td>        
+        <td><%= link_to '８', 'uriys/by_bmn/8/' + bmn.id.to_s %></td>        
+        <td><%= link_to '９', 'uriys/by_bmn/9/' + bmn.id.to_s %></td>        
+        <td><%= link_to '10', 'uriys/by_bmn/10/' + bmn.id.to_s %></td>        
+        <td><%= link_to '11', 'uriys/by_bmn/11/' + bmn.id.to_s %></td>        
+        <td><%= link_to '12', 'uriys/by_bmn/12/' + bmn.id.to_s %></td>        
+        <td><%= link_to '１', 'uriys/by_bmn/1/' + bmn.id.to_s %></td>        
+        <td><%= link_to '２', 'uriys/by_bmn/2/' + bmn.id.to_s %></td>        
+        <td><%= link_to '３', 'uriys/by_bmn/3/' + bmn.id.to_s %></td>        
+        <td><%= link_to '４', 'urijs/by_bmn/4/' + bmn.id.to_s %></td>        
+        <td><%= link_to '５', 'urijs/by_bmn/5/' + bmn.id.to_s %></td>        
+        <td><%= link_to '６', 'urijs/by_bmn/6/' + bmn.id.to_s %></td>        
+        <td><%= link_to '７', 'urijs/by_bmn/7/' + bmn.id.to_s %></td>        
+        <td><%= link_to '８', 'urijs/by_bmn/8/' + bmn.id.to_s %></td>        
+        <td><%= link_to '９', 'urijs/by_bmn/9/' + bmn.id.to_s %></td>        
+        <td><%= link_to '10', 'urijs/by_bmn/10/' + bmn.id.to_s %></td>        
+        <td><%= link_to '11', 'urijs/by_bmn/11/' + bmn.id.to_s %></td>        
+        <td><%= link_to '12', 'urijs/by_bmn/12/' + bmn.id.to_s %></td>        
+        <td><%= link_to '１', 'urijs/by_bmn/1/' + bmn.id.to_s %></td>        
+        <td><%= link_to '２', 'urijs/by_bmn/2/' + bmn.id.to_s %></td>        
+        <td><%= link_to '３', 'urijs/by_bmn/3/' + bmn.id.to_s %></td>        
+        <td><%= link_to '詳細', bmn %></td>
+        <td><%= link_to '編集', edit_bmn_path(bmn) %></td>
+        <td><%= link_to '削除', bmn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新規登録', new_bmn_path %>
+</br>
+<hr>
+<%= link_to "メインメニュー", '/' %>
+

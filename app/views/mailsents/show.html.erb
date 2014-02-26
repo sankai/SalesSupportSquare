@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mailtemplate:</strong>
+  <%= @mailsent.mailtemplate_id %>
+</p>
+
+<p>
+  <strong>Sent time:</strong>
+  <%= @mailsent.sent_time %>
+</p>
+
+<%= link_to 'Edit', edit_mailsent_path(@mailsent) %> |
+<%= link_to 'Back', mailsents_path %>

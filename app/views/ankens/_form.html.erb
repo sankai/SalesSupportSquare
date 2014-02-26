@@ -1,0 +1,253 @@
+<%= form_for(@anken) do |f| %>
+  <% if @anken.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@anken.errors.count, "error") %> prohibited this anken from being saved:</h2>
+
+      <ul>
+      <% @anken.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :mitmr_no %><br>
+    <%= f.text_field :mitmr_no %>
+  </div>
+  <div class="field">
+    <%= f.label :mitmr_eda_no %><br>
+    <%= f.text_field :mitmr_eda_no %>
+  </div>
+  <div class="field">
+    <%= f.label :kkk_id %><br>
+    <%= f.number_field :kkk_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sk_bmn_id %><br>
+    <%= f.number_field :sk_bmn_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sk_shain_id %><br>
+    <%= f.number_field :sk_shain_id %>
+  </div>
+  <div class="field">
+    <%= f.label :e_bmn_id %><br>
+    <%= f.number_field :e_bmn_id %>
+  </div>
+  <div class="field">
+    <%= f.label :e_shain_id %><br>
+    <%= f.number_field :e_shain_id %>
+  </div>
+  <div class="field">
+    <%= f.label :mitmr_name %><br>
+    <%= f.text_field :mitmr_name %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_name %><br>
+    <%= f.text_field :jch_name %>
+  </div>
+  <div class="field">
+    <%= f.label :prj_name %><br>
+    <%= f.text_field :prj_name %>
+  </div>
+  <div class="field">
+    <%= f.label :prj_code %><br>
+    <%= f.text_field :prj_code %>
+  </div>
+  <div class="field">
+    <%= f.label :hiyo_kbn %><br>
+    <%= f.text_field :hiyo_kbn %>
+  </div>
+  <div class="field">
+    <%= f.label :uribunya_id %><br>
+    <%= f.number_field :uribunya_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shubetsu %><br>
+    <%= f.text_field :shubetsu %>
+  </div>
+  <div class="field">
+    <%= f.label :theme2 %><br>
+    <%= f.text_field :theme2 %>
+  </div>
+  <div class="field">
+    <%= f.label :enduser_id %><br>
+    <%= f.number_field :enduser_id %>
+  </div>
+  <div class="field">
+    <%= f.label :uri_project %><br>
+    <%= f.text_field :uri_project %>
+  </div>
+  <div class="field">
+    <%= f.label :nensho_yosan %><br>
+    <%= f.number_field :nensho_yosan %>
+  </div>
+  <div class="field">
+    <%= f.label :kingaku %><br>
+    <%= f.number_field :kingaku %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_yotei_date %><br>
+    <%= f.date_select :jch_yotei_date %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_no %><br>
+    <%= f.text_field :jch_no %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_date %><br>
+    <%= f.date_select :jch_date %>
+  </div>
+  <div class="field">
+    <%= f.label :snksgy_sn_date %><br>
+    <%= f.date_select :snksgy_sn_date %>
+  </div>
+  <div class="field">
+    <%= f.label :snksgy_sign %><br>
+    <%= f.text_field :snksgy_sign %>
+  </div>
+  <div class="field">
+    <%= f.label :genka_kingaku %><br>
+    <%= f.number_field :genka_kingaku %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_arari_kingaku %><br>
+    <%= f.number_field :jch_arari_kingaku %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_arari_rate %><br>
+    <%= f.text_field :jch_arari_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :uri_y_zennen %><br>
+    <%= f.number_field :uri_y_zennen %>
+  </div>
+  <div class="field">
+    <%= f.label :uri_y_jinen %><br>
+    <%= f.number_field :uri_y_jinen %>
+  </div>
+  <div class="field">
+    <%= f.label :uri_y_final %><br>
+    <%= f.number_field :uri_y_final %>
+  </div>
+  <div class="field">
+    <%= f.label :uri_j_zennen %><br>
+    <%= f.number_field :uri_j_zennen %>
+  </div>
+  <div class="field">
+    <%= f.label :uri_j_jinen %><br>
+    <%= f.number_field :uri_j_jinen %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_kakudo %><br>
+    <%= f.text_field :jch_kakudo %>
+  </div>
+  <div class="field">
+    <%= f.label :eigyo_comment %><br>
+    <%= f.text_field :eigyo_comment %>
+  </div>
+  <div class="field">
+    <%= f.label :jky_memo_comp %><br>
+    <%= f.text_field :jky_memo_comp %>
+  </div>
+  <div class="field">
+    <%= f.label :jky_memo_keyman %><br>
+    <%= f.text_field :jky_memo_keyman %>
+  </div>
+  <div class="field">
+    <%= f.label :jky_memo_kadai %><br>
+    <%= f.text_field :jky_memo_kadai %>
+  </div>
+  <div class="field">
+    <%= f.label :teian_irai_date %><br>
+    <%= f.date_select :teian_irai_date %>
+  </div>
+  <div class="field">
+    <%= f.label :teian_date %><br>
+    <%= f.date_select :teian_date %>
+  </div>
+  <div class="field">
+    <%= f.label :c_hacchusho_no %><br>
+    <%= f.text_field :c_hacchusho_no %>
+  </div>
+  <div class="field">
+    <%= f.label :mtmr_irai_date %><br>
+    <%= f.date_select :mtmr_irai_date %>
+  </div>
+  <div class="field">
+    <%= f.label :mtmr_kaito_kigen_date %><br>
+    <%= f.date_select :mtmr_kaito_kigen_date %>
+  </div>
+  <div class="field">
+    <%= f.label :mtmr_date %><br>
+    <%= f.date_select :mtmr_date %>
+  </div>
+  <div class="field">
+    <%= f.label :anken_chusi_date %><br>
+    <%= f.date_select :anken_chusi_date %>
+  </div>
+  <div class="field">
+    <%= f.label :anken_kanryo_date %><br>
+    <%= f.date_select :anken_kanryo_date %>
+  </div>
+  <div class="field">
+    <%= f.label :anken_syukka_date %><br>
+    <%= f.date_select :anken_syukka_date %>
+  </div>
+  <div class="field">
+    <%= f.label :seikyusho %><br>
+    <%= f.text_field :seikyusho %>
+  </div>
+  <div class="field">
+    <%= f.label :seikyusho_date %><br>
+    <%= f.date_select :seikyusho_date %>
+  </div>
+  <div class="field">
+    <%= f.label :gassan_seikyu_date %><br>
+    <%= f.date_select :gassan_seikyu_date %>
+  </div>
+  <div class="field">
+    <%= f.label :anken_kbn %><br>
+    <%= f.text_field :anken_kbn %>
+  </div>
+  <div class="field">
+    <%= f.label :e_shain_id %><br>
+    <%= f.number_field :e_shain_id %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_bmn_id %><br>
+    <%= f.number_field :jch_bmn_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sei_shain_id %><br>
+    <%= f.number_field :sei_shain_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sei_bmn_id %><br>
+    <%= f.number_field :sei_bmn_id %>
+  </div>
+  <div class="field">
+    <%= f.label :jch_status %><br>
+    <%= f.text_field :jch_status %>
+  </div>
+  <div class="field">
+    <%= f.label :seikyu_status %><br>
+    <%= f.text_field :seikyu_status %>
+  </div>
+  <div class="field">
+    <%= f.label :sakusei_step %><br>
+    <%= f.text_field :sakusei_step %>
+  </div>
+  <div class="field">
+    <%= f.label :renban %><br>
+    <%= f.text_field :renban %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

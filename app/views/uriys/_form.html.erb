@@ -1,0 +1,33 @@
+<%= form_for(@uriy) do |f| %>
+  <% if @uriy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@uriy.errors.count, "error") %> prohibited this uriy from being saved:</h2>
+
+      <ul>
+      <% @uriy.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :month %><br>
+    <%= f.number_field :month %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :anken_id %><br>
+    <%= f.number_field :anken_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
