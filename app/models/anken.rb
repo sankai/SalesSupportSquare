@@ -97,17 +97,32 @@ class Anken < ActiveRecord::Base
     return self.e_bmn.name
   end
 
-
-
-
-  #
-  def get_uriy_amount(month)
+  # 
+  def get_uriy(month)
     self.uriys.each do | uriy |
       if uriy.month == month
-        return uriy.amount.to_i
+        return uriy
+      end
+    end    
+    return nil
+  end
+
+  # 
+  def get_urij(month)
+    self.urijs.each do | urij |
+      if urij.month == month
+        return urij
       end
     end
-    return 0
+    return nil
+  end  
+  #
+  def get_uriy_amount(month)
+    uriy = self.get_uriy(month)
+    if uriy.nil?
+      return 0
+    end
+    return uriy.amount.to_i
   end
 
   def get_uriy_sum
@@ -119,12 +134,11 @@ class Anken < ActiveRecord::Base
   end
 
   def get_urij_amount(month)
-    self.urijs.each do | urij |
-      if urij.month == month
-        return urij.amount.to_i
-      end
+    urij = self.get_urij(month)
+    if urij.nil?
+      return 0
     end
-    return 0
+    return urij.amount.to_i
   end
 
   def get_urij_sum
@@ -135,11 +149,12 @@ class Anken < ActiveRecord::Base
     return sum
   end
 
+  # CSVの1行からAnkenインスタンスを生成し、各マスタも存在しなければ生成する。
   def self.from_csv(anArray)
     anAnken = new
-    unless anArray[0].blank?                         # 削除フラグ
-      return nil
-    end
+    #unless anArray[0].blank?                         # 削除サインは無視しています
+    #  return nil
+    #end
     anAnken.status = convert(anArray[1])
     anAnken.mitmr_no = convert(anArray[2])
     anAnken.mitmr_eda_no = convert(anArray[3])
@@ -159,15 +174,10 @@ class Anken < ActiveRecord::Base
     anAnken.kingaku = convert(anArray[30]).delete(',').to_i
     
     unless anArray[31].blank?
-      if anArray[31].index('99') > 0
+      unless anArray[31].index('99').nil?
         return nil
       end
       anAnken.jch_yotei_date = anArray[31]
-      puts '***************' + '1' + anArray[31][index..index + 3] + '-' + (2000 + anArray[31][0..index - 1].to_i).to_s
-    #  index = anArray[31].index('-')
-    #  puts '***************' + '1' + anArray[31][index..index + 3] + '-' + (2000 + anArray[31][0..index - 1].to_i).to_s
-    #  anAnken.jch_yotei_date = Date.parse('1' + anArray[31][index..index + 3] + '-' + (2000 + anArray[31][0..index - 1].to_i).to_s) 
-    #  puts '***************' + anAnken.jch_yotei_date.to_s
     end
     
     anAnken.jch_no = convert(anArray[32])
@@ -281,7 +291,7 @@ class Anken < ActiveRecord::Base
         uri        = Uriy.new
         uri.year   = 2013
         uri.month  = month
-        uri.amount = anArray[position].delete(',').to_i
+        uri.amount = anArray[position].delete(',').to_f
         uri.e_bmn_id    = self.e_bmn_id
         uri.e_shain_id  = self.e_shain_id
         self.uriys.append(uri)
@@ -310,4 +320,35 @@ class Anken < ActiveRecord::Base
     to   = to >> 1
     return self.where('jch_yotei_date between ? and ?', from, to)
   end
+  
+  # ２つのAnkenインスタンスをマージする。
+  def merge(another)
+    self.kingaku        = self.kingaku      + another.kingaku
+    self.uri_y_zennen   = self.uri_y_zennen + another.uri_y_zennen
+    self.uri_y_jinen    = self.uri_y_jinen  + another.uri_y_jinen
+    self.uri_j_zennen   = self.uri_j_zennen + another.uri_j_zennen
+    self.uri_j_jinen    = self.uri_j_jinen  + another.uri_j_jinen
+    
+    another.uriys.each do | uriy |
+      myUriy = self.get_uriy(uriy.month)
+      if myUriy.nil?
+        self.uriys.append(uriy)
+      else
+        myUriy.amount = myUriy.amount + uriy.amount
+        myUriy.save
+      end
+    end
+    
+    another.urijs.each do | urij |
+      myUrij = self.get_urij(urij.month)
+      if myUrij.nil?
+        self.urijs.append(urij)
+      else
+        myUrij.amount = myUrij.amount + urij.amount
+        myUrij.save
+      end
+    end
+    
+  end
+  
 end

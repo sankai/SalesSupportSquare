@@ -138,29 +138,36 @@ class AnkensController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # CSVアップロード
   # CSV Upload /upload
   def upload
     require 'csv'
-	  if !params[:upload_file].blank?
-	    Anken.transaction do
-	      #Anken.destroy_all
-	      #Urij.destroy_all
-	      #Uriy.destroy_all
-	      
-	      Anken.connection.execute("delete from ankens;")
-	      Urij.connection.execute("delete from urijs;")
-	      Uriy.connection.execute("delete from uriys;")
+	  if params[:upload_file].blank?
+	    return
+	  end
+	  Anken.transaction do
 
-	      #Anken.connection.execute("TRUNCATE TABLE ankens;")
-	      #Urij.connection.execute("TRUNCATE TABLE urijs;")
-	      #Uriy.connection.execute("TRUNCATE TABLE uriys;")
-	    end
-	    reader = params[:upload_file].read
-	    CSV.parse(reader) do |row|
-  	    Anken.transaction do
-	        anAnken = Anken.from_csv(row)
-	        unless anAnken.nil?
+	    Anken.connection.execute("delete from ankens;")
+	    Urij.connection.execute("delete from urijs;")
+	    Uriy.connection.execute("delete from uriys;")
+
+	  end
+	  
+	  anken_keys = Hash.new()
+	  
+	  reader = params[:upload_file].read
+	  CSV.parse(reader) do |row|
+	    ActiveRecord::Base.transaction do
+	      anAnken = Anken.from_csv(row)
+	      unless anAnken.nil?
+	        another = anken_keys.fetch(anAnken.jch_no, nil)
+	        unless another.blank?
+            another.merge(anAnken)
+	          another.save()
+	        else
+	          unless anAnken.jch_no.blank?
+              anken_keys.store(anAnken.jch_no, anAnken)
+	          end
 	          anAnken.save()
 	        end
 	      end
